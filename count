@@ -1,0 +1,10 @@
+
+                                                                  
+  [Symfony\Component\Console\Exception\CommandNotFoundException]  
+  Command "route:list-" is not defined.                           
+  Did you mean one of these?                                      
+      route:list                                                  
+      route:cache                                                 
+      route:clear                                                 
+                                                                  
+
