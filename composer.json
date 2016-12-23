@@ -10,7 +10,8 @@
         "laravelcollective/html": "5.3.*",
         "gloudemans/shoppingcart": "^2.2",
         "intervention/image": "^2.3",
-        "bkwld/croppa": "^4.5"
+        "bkwld/croppa": "^4.5",
+        "laravel/socialite": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

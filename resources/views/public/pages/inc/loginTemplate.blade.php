@@ -16,6 +16,9 @@
 						</span>
 						<button type="submit" class="btn btn-default">Login</button>
 					{{Form::close()}}
+
+					<a href="{{url('redirect')}}" class="btn btn-info">FB Login</a>
+
 				</div><!--/login form-->
 			</div>
 			<div class="col-sm-1">

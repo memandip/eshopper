@@ -11,6 +11,10 @@
 |
 */
 
+//Socialite routes
+Route::get('/redirect', 'SocialAuthController@redirect');
+Route::get('/callback', 'SocialAuthController@callback');
+
 //Frontend Routes
 Route::get('/', 'FrontEndController@index');
 Route::get('index',  'FrontEndController@index');

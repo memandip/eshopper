@@ -189,6 +189,9 @@ return [
         //Croppa Image thumbnail generator service provider
         Bkwld\Croppa\ServiceProvider::class,
 
+        //Laravel socialite service provider
+        Laravel\Socialite\SocialiteServiceProvider::class,
+
     ],
 
     /*
@@ -241,6 +244,7 @@ return [
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Croppa' => Bkwld\Croppa\Facade::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];

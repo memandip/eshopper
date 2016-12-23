@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Traits;
 
 use Illuminate\Http\Request;
@@ -9,58 +9,70 @@ use Validator;
 
 use App\Customer;
 
-Trait CustomerAuthenticationTrait{
+Trait CustomerAuthenticationTrait
+{
 
-	protected $data;
+    protected $customerData;
 
-	public function login(Request $request){
-		
-		if($this->validateLogin($request->all())->fails()){
-			$request->session()->flash('error','Email and password field is required.');
-			return redirect()->back()->withInput();
-		}
+    public function login(Request $request)
+    {
 
-		$email = $request['email'];
-		$password = $this->hashPassword($request['password']);
-		$credentials = ['email'=>$email,'password'=>$password];
-		
-		if(!$this->customerExists($credentials)){
-			$request->session()->flash('error','Invalid email and password combination.');
-			return redirect()->back()->withInput();
-		}
-		
-		$this->saveCustomer($this->data, $request);
-		return redirect('account');
-	}
+        if ($this->validateLogin($request->all())->fails()) {
+            $request->session()->flash('error', 'Email and password field is required.');
 
-	public function logout(Request $request){
-		$request->session()->forget('customer');
-		return redirect('/');
-	}
+            return redirect()->back()->withInput();
+        }
 
-	public function hashPassword($password){
-		return sha1(hash_hmac('sha512', $password, env('APP_KEY')));
-	}
+        $email = $request['email'];
+        $password = $this->hashPassword($request['password']);
+        $credentials = ['email' => $email, 'password' => $password];
 
-	public function validateLogin($input){
-		return Validator::make($input, [
-				'email'=>'required',
-				'password'=>'required'
-			]);
-	}
+        if (!$this->customerExists($credentials)) {
+            $request->session()->flash('error', 'Invalid email and password combination.');
 
-	public function saveCustomer($customer, Request $request){
-		return $request->session()->put('customer',$customer);
-	}
+            return redirect()->back()->withInput();
+        }
 
-	public function customerExists($credentials){
-		$customer = Customer::where($credentials)->get()->first();
-		if($customer){
-			$this->data = $customer;
-			return true;
-		}	else 	{
-			return false;
-		}
-	}
+        $this->saveCustomer($this->customerData, $request);
+
+        return redirect('account');
+    }
+
+    public function logout(Request $request)
+    {
+        $request->session()->forget('customer');
+
+        return redirect('/');
+    }
+
+    public function hashPassword($password)
+    {
+        return sha1(hash_hmac('sha512', $password, env('APP_KEY')));
+    }
+
+    public function validateLogin($input)
+    {
+        return Validator::make($input, [
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+    }
+
+    public function saveCustomer($customer, Request $request)
+    {
+        return $request->session()->put('customer', $customer);
+    }
+
+    public function customerExists($credentials)
+    {
+        $customer = Customer::where($credentials)->get()->first();
+        if ($customer) {
+            $this->customerData = $customer;
+
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }

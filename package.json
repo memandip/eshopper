@@ -16,6 +16,7 @@
     "vue-resource": "^1.0.2"
   },
   "dependencies": {
+    "gulp": "^3.9.1",
     "webpack-stream-fixed": "^3.2.2"
   }
 }
