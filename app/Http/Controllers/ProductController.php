@@ -39,7 +39,7 @@ class ProductController extends Controller
       if(in_array($file->getClientOriginalExtension(), $extensions) && $request->hasFile('image') && $file->isValid()){
         $fileName = time().$file->getClientOriginalName();
         $file->storeAs('images/products/', $fileName);
-        $file->move('images/products/',$fileName);
+        // $file->move('images/products/',$fileName);
         $product = new Product;
         $product->product_name = $input['product_name'];
         $product->price = $input['price'];

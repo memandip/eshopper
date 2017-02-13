@@ -15,5 +15,6 @@ class VerifyCsrfToken extends BaseVerifier
         'cart/add',
         'cart/item/delete',
         'cart/manageItems',
+        'es/admin/image/upload'
     ];
 }

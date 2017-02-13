@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+.content-wrapper{
+  height: 100vh;
+}
+
 .error{
   color:red;
 }
@@ -26,5 +30,21 @@ textarea, select{
 	padding: 5px;
 	width: 100%;
 	border-radius: 0;
-	resize: none
+	resize: none;
+}
+
+.inline{
+  display: inline;
+}
+
+footer{
+  position: relative;
+}
+
+.dataTables_filter{
+  margin-top: 28px;
+}
+
+.datatable-header{
+  margin-top: -45px;
 }

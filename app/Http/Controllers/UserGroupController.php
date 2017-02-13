@@ -88,6 +88,8 @@ class UserGroupController extends Controller
         }
       }
 
+    } else  {
+      return redirect()->back()->with(['error' => 'Please select at least one field.']);
     }
     
     return redirect()->back()->with(['success' => 'User Group permissions successfully updated.']);

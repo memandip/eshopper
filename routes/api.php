@@ -13,21 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-// //Cart API
-// Route::post('cart/add', 'CartController@addToCart');
-// Route::delete('cart/item/delete','CartController@deleteCartItem');
-// Route::get('cart/contents','CartController@cart');
-// Route::get('cart/total', 'CartController@cartTotal');
-// Route::post('cart/manageItems','CartController@manageItems');
+//Customer API Rotues
 
-// Route::get('/', function(){
-//   return Response::json(App\User::all());
-// });
+Route::get('get/customers/{offset}', 'CustomerController@getCustomers');
+Route::get('customer/{id}/activate', 'CustomerController@activate');
+Route::get('customer/{id}/deactivate', 'CustomerController@deactivate');
 
-// Route::get('/user', function (Request $request) {
-//     return $request->user();
-// })->middleware('auth:api');
 
-// Route::get('/index', function(){
-// 	return "Api default route";
-// });

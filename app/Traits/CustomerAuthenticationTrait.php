@@ -27,6 +27,9 @@ Trait CustomerAuthenticationTrait{
 		if(!$this->customerExists($credentials)){
 			$request->session()->flash('error','Invalid email and password combination.');
 			return redirect()->back()->withInput();
+		}	else if ($this->data->status != 1) {
+			$request->session()->flash('error','Your account is currently deactivated.');
+			return redirect()->back()->withInput();
 		}
 		
 		$this->saveCustomer($this->data, $request);
@@ -53,7 +56,7 @@ Trait CustomerAuthenticationTrait{
 		return $request->session()->put('customer',$customer);
 	}
 
-	public function customerExists($credentials){
+	public function customerExists(Array $credentials){
 		$customer = Customer::where($credentials)->get()->first();
 		if($customer){
 			$this->data = $customer;

@@ -116,4 +116,63 @@ class CustomerController extends Controller
 		return view('public/pages/checkoutSuccess');
 	}
 
+	public function customers(){
+		return view('admin/pages/customer/customerList')->with(['customers' => Customer::all()]);
+	}
+
+	public function getCustomers($offset, $perpage = 10){
+		if($offset){
+			$customers = (new Customer)->skip($offset)->take($perpage)->get();
+		}	else 	{
+			$customers = (new Customer)->take($perpage)->get();
+		}	
+		$totalCustomers = count(Customer::all());
+		$total_pages = ceil( $totalCustomers / $perpage);
+		$current_page = ceil( $offset / $perpage) == 0 ? 1 : ceil( $offset / $perpage);
+
+		for ($i=1; $i <= $total_pages ; $i++) { 
+			$totalPages[] = $i;
+		}
+
+		return \Response::json([
+				'customers' => $customers,
+				'currentPage' => $current_page,
+				'pages' => $totalPages,
+				'perpage' => $perpage,
+				'totalCustomers' => $totalCustomers
+			]);
+	}
+
+	public function activate($id){
+		$customer = Customer::findOrFail($id);
+		$customer->status = 1;
+		$customer->save();
+		return \Response::json(['success' => true, 'customer' => $customer]);
+	}
+
+	public function deactivate($id){
+		$customer = Customer::findOrFail($id);
+		$customer->status = 0;
+		$customer->save();
+		return \Response::json(['success' => true]);
+	}
+
+	public function delete($id){
+		$customer = Customer::findOrFail($id);
+		$customer->delete();
+		return redirect()->back()->with(['success' => 'One customer is deleted.']);
+	}
+
+	public function restore($id){
+		$customer = Customer::withTrashed()->findOrFail($id);
+		$customer->restore();
+		return redirect()->back()->with(['success' => 'One customer is restored.']);
+	}
+
+	public function deletePermanently($id){
+		$customer = Customer::withTrashed()->findOrFail($id);
+		$customer->forceDelete();
+		return redirect()->back()->with(['success' => 'One customer is deleted permanently.']);
+	}
+
 }

@@ -16,7 +16,7 @@
 	        </select>
 	        <input type="text" name="address" placeholder="Address" class="form-control" value="{{old('address') ? old('address') : $customer->address}}">
 	        <br/>
-			<button type="submit" class="btn btn-default">Signup</button>
+			<button type="submit" class="btn btn-default">Save</button>
 		{{Form::close()}}
 	</div><!--/sign up form-->
 </div>

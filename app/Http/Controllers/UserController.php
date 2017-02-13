@@ -58,8 +58,7 @@ class UserController extends Controller
 
     public function viewUsers(){
       $usergroup = UserGroup::where('group_name','superadmin')->firstOrFail();
-      $data['users'] = User::withTrashed()
-                            ->where('id','!=',Auth::user()->id)
+      $data['users'] = User::where('id','!=',Auth::user()->id)
                             ->where('group_id','!=',$usergroup->id)
                             ->get();
       $data['sn'] = 0;

@@ -52,19 +52,30 @@
           </li>
 
           <li>
-              <a href="#"><i class="icon-grid"></i><span> Brand</span></a>
+            <a href="#"> <i class="icon-user"></i> <span>Customer</span></a>
             <ul>
               <li>
-                <a href="{{url('es/admin/addbrand')}}">
-                  <span class="glyphicon glyphicon-plus"></span> Add Brand
-                </a>
-              </li>
-              <li>
-                <a href="{{url('es/admin/viewbrands')}}">
-                  <span class="glyphicon glyphicon-eye-open"></span> View Brands
+                <a href="{{url('es/admin/customers')}}">
+                  <span class="glyphicon glyphicon-eye-open"></span> View Customers
                 </a>
               </li>
             </ul>
+          </li>
+
+          <li>
+              <a href="#"><i class="icon-grid"></i><span> Brand</span></a>
+              <ul>
+                <li>
+                  <a href="{{url('es/admin/addbrand')}}">
+                    <span class="glyphicon glyphicon-plus"></span> Add Brand
+                  </a>
+                </li>
+                <li>
+                  <a href="{{url('es/admin/viewbrands')}}">
+                    <span class="glyphicon glyphicon-eye-open"></span> View Brands
+                  </a>
+                </li>
+              </ul>
           </li>
 
           <li>
@@ -168,6 +179,52 @@
                 </a>
               </li>
             </ul>
+          </li>
+
+          <li>
+            <a href="#">
+              <i class="glyphicon glyphicon-trash"></i>
+              <span> Trash</span>
+            </a>
+            <ul>
+              <li>
+                <a href="{{url('es/admin/trash/user')}}">
+                  <i class="glyphicon glyphicon-user"></i>
+                  <span> Trashed Users</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{url('es/admin/trash/customer')}}">
+                  <i class="glyphicon glyphicon-user"></i>
+                  <span> Trashed Customers</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{url('es/admin/trash/brand')}}">
+                  <i class="glyphicon glyphicon-th"></i>
+                  <span> Trashed Brands</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{url('es/admin/trash/category')}}">
+                  <i class="glyphicon glyphicon-th"></i>
+                  <span> Trashed Categories</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{url('es/admin/trash/product')}}">
+                  <i class="glyphicon glyphicon-th"></i>
+                  <span> Trashed Products</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="{{url('es/admin/upload')}}">
+              <i class="icon icon-upload"></i>
+              <span> Upload</span>
+            </a>
           </li>
 
 

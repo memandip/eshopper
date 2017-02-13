@@ -3,11 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\softDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Customer extends Model
 {
-    use softDeletes;
+    use SoftDeletes;
 
     protected $fillable = ['full_name', 'email' ,'username', 'password',  'address', 'country_id', 'group_id', 'credit_card_no'];
     protected $hidden = ['password'];

@@ -16,6 +16,17 @@
 
 <div class="col-md-12">
   @include('inc/messages')
+  <div class="col-md-12">
+    <h1>Add Brand Form <sup style="font-size:12px;">*fields with asterisk are mandatory.</sup></h1>
+    {{Form::open(['url'=>'es/admin/addbrand'])}}
+      <div class="form-group col-md-6">
+        <input type="text" name="brand_name" value="{{old('brand_name')}}" id="brandName" placeholder="Brand Name" class="form-control">
+      </div>
+      <div class="form-group col-md-2">
+        <input type="submit" value="Add brand" class="btn btn-primary">
+      </div>
+    {{Form::close()}}
+  </div>
   <table class="table table-bordered table-hover table-striped table-condensed datatable-basic">
     <thead>
       <tr>

@@ -12,7 +12,7 @@
 		<div class="col-sm-5 col-md-5">
 			<div class="view-product">
 				<a class="example-image" href="{{url('images/products')}}/{{$product->image}}" data-lightbox="example-set">
-		      		<img class="example-image" src="{{url('images/products')}}/{{$product->image}}	" alt="product-image" height="268" width="249" />
+		      		<img src="{{url('images/products')}}/{{$product->image}}" alt="product-image" />
 		      	</a>
 			</div>
 		</div>

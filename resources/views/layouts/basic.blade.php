@@ -1,17 +1,16 @@
-<!DOCTYPE html>
 <html lang="en" ng-app="eshopper">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Cart | E-Shopper</title>
+    <title>E-Shopper</title>
     <link href="{{url('css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{url('css/font-awesome.min.css')}}" rel="stylesheet">
-    <link href="{{url('css/prettyPhoto.css')}}" rel="stylesheet">
-    <link href="{{url('css/main.css')}}" rel="stylesheet">
-    <link href="{{url('css/styles.css')}}" rel="stylesheet">
-  	<link href="{{url('css/responsive.css')}}" rel="stylesheet">
+	<link href="{{url('css/font-awesome.min.css')}}" rel="stylesheet">
+	<link href="{{url('css/animate.css')}}" rel="stylesheet">
+	<link href="{{url('css/main.css')}}" rel="stylesheet">
+	<link href="{{url('css/styles.css')}}" rel="stylesheet">
+	<link href="{{url('css/responsive.css')}}" rel="stylesheet"><!DOCTYPE html>
   	@yield('styles')
     <script src="{{url('js/angular.min.js')}}" charset="utf-8"></script>
     <script src="{{url('js/jquery.js')}}"></script>

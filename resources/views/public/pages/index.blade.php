@@ -54,7 +54,7 @@
 	            <span class="sr-only">Next</span>
 	        </a> 
 	    </div>
-		<script src="js/custom.js"></script>
+		<!-- <script src="js/custom.js"></script> -->
 	</div>
 	<!-- //banner -->
 </section><!--/slider-->

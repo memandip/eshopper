@@ -7,7 +7,7 @@
 @section('content')
 
   <div class="col-md-12">
-    <h1>Add Brand Form <sup style="font-size:12px;">*fields with asterisk are mandatory.</sup></h1>
+    <h1>Add Category Form <sup style="font-size:12px;">*fields with asterisk are mandatory.</sup></h1>
 
     @include('inc/messages')
 

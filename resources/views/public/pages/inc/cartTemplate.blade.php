@@ -32,14 +32,14 @@
 		              	</td>
 		              	<td class="cart_quantity">
 			                <div class="cart_quantity_button">
-												<button class="btn btn-info" ng-click="manageItems(rowId, 'add')">
-			                    <span class="glyphicon glyphicon-plus"></span>
-			                  </button>
-												<strong style="padding:10px;"> @{{cart.qty}} </strong>
-												<button class="btn btn-info" ng-click="manageItems(rowId, 'sub')">
-			                    <span class="glyphicon glyphicon-minus"></span>
-			                  </button>
-											</div>
+								<button class="btn btn-info" ng-click="manageItems(rowId, 'add')" ng-disabled = "cart.qty >= 10">
+				                    <span class="glyphicon glyphicon-plus"></span>
+				                </button>
+								<strong style="padding:10px;"> @{{cart.qty}} </strong>
+								<button class="btn btn-info" ng-click="manageItems(rowId, 'sub')" ng-disabled = "cart.qty <= 1">
+				                    <span class="glyphicon glyphicon-minus"></span>
+				                </button>
+							</div>
 						</td>
 		              	<td class="cart_total">
 		                	<p>@{{'Rs. '+cart.total}}</p>

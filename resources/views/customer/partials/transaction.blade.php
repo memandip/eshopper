@@ -63,6 +63,9 @@
 					$(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').removeClass('dropup');
 			}
 	});
+
+	$('.dataTables_filter label').css('margin-top','29px');
+
 </script>
 
 @endsection

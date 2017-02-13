@@ -12,6 +12,15 @@
 */
 
 //Frontend Routes
+Route::get('phpthumb', function(){
+$img = Image::make(file_get_contents('images/8.jpg'));
+// resize image instance
+$img->resize(320, 240);
+$img->save('808.jpg');
+return Response::make($img, 200, ['Content-Type' => 'image/jpg']);
+  //return view('phpthumb');
+});
+
 Route::get('/', 'FrontEndController@index');
 Route::get('index',  'FrontEndController@index');
 Route::get('404', 'FrontEndController@error_page');
@@ -63,7 +72,7 @@ Route::get('es/admin/login', function (){
 });
 Route::post('es/admin/login','Auth\LoginController@login');
 Route::get('es/admin/logout','Auth\LoginController@logout');
-Route::group(['prefix'=>'es/admin', 'middleware'=>'auth'], function(){
+Route::group(['prefix'=>'es/admin', 'middleware'=>'auth.basic'], function(){
 
   Route::get('/', function(){
     return view('admin/admin');
@@ -90,6 +99,12 @@ Route::group(['prefix'=>'es/admin', 'middleware'=>'auth'], function(){
   Route::post('adduser', 'UserController@addUser');
   Route::get('viewusers', 'UserController@viewUsers');
 
+  //Customer routes
+  Route::get('customers', 'CustomerController@customers');
+  Route::get('customer/{id}/delete', 'CustomerController@delete');
+  Route::get('customer/{id}/restore', 'CustomerController@restore');
+  Route::get('customer/{id}/forceDelete', 'CustomerController@deletePermanently');
+  
   //Admin brand routes
   Route::get('addbrand', function(){
     return view('admin/pages/brand/addbrand');
@@ -155,4 +170,35 @@ Route::group(['prefix'=>'es/admin', 'middleware'=>'auth'], function(){
   Route::post('country/{id}/edit', 'CountryController@postEditCountry');
   Route::get('country/{id}/delete', 'CountryController@deleteCountry');
 
+  //Trash
+  Route::get('trash/user', 'TrashController@trashedUsers');
+  Route::get('trash/customer', 'TrashController@trashedCustomers');
+  Route::get('trash/brand', 'TrashController@trashedBrands');
+  Route::get('trash/category', 'TrashController@trashedCategories');
+  Route::get('trash/product', 'TrashController@trashedProducts');
+
+  Route::get('upload', function(){
+    return view('admin/upload');
+  });
+
+  Route::post('image/upload', function(\Illuminate\Http\Request $request){
+    $files = $request->file('file');
+    if($files){
+      foreach ($files as $file) {
+        \Storage::put($file->getClientOriginalName(), file_get_contents($file));
+      }
+    }
+    return \Response::json(['success' => true]);
+  });
+
+});
+
+Route::post('image/upload', function(\Illuminate\Http\Request $request){
+  $files = $request->file('file');
+  if($files){
+    foreach ($files as $file) {
+      $file->store('uploads');
+    }
+  }
+  return \Response::json(['success' => true]);
 });

@@ -42,22 +42,20 @@
 						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
 						<?php $counter = 0; ?>
 						@foreach($categories as $category)
+							@if($category->hasChild($category->id))
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h4 class="panel-title">
-										<a @if($category->hasChild($category->id)) data-toggle="collapse" data-parent="#accordian" href="#{{$category->category_name}}" @endif>
-					                      @if($category->hasChild($category->id))
+										<a data-toggle="collapse" data-parent="#accordian" href="#{{$category->category_name}}">
 					                      <span class="badge pull-right">
-					                        <i class="fa fa-plus"></i>
+					                        <i class="fa fa-plus" onclick="toggleIcon(this)"></i>
 					                      </span>
-					                      @endif
-					                      	<a @if($category->hasChild($category->id)) href="{{url('category').'/'.$category->id}}" @endif>
+					                      	<a href="{{url('category').'/'.$category->id}}">
 						                        {{$category->category_name}}
 						                    </a>
 										</a>
 									</h4>
 								</div>
-                				@if($category->hasChild($category->id))
 								<div id="{{$category->category_name}}" class="panel-collapse collapse">
 									<div class="panel-body">
 										<ul>
@@ -69,28 +67,28 @@
 										</ul>
 									</div>
 								</div>
-                				@endif
 							</div>
+							@endif
 							<?php $counter++; if($counter>=11) break; ?>
              				@endforeach
 						</div><!--/category-products-->
 
-						@if(!isset($productDetailsActive))
 						<div class="brands_products"><!--brands_products-->
 							<h2>Brands</h2>
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
 								<?php $sn = 0; ?>
                 				@foreach($brands as $brand)
+                					@if($brand->hasChild($brand->id))
 									<li>
-										<a @if($brand->hasChild($brand->id)) href="{{url('brand').'/'.$brand->id}}" @endif>{{$brand->brand_name}}</a>
+										<a href="{{url('brand').'/'.$brand->id}}">{{$brand->brand_name}}</a>
 									</li>
 									<?php $sn++; if($sn>=25) break; ?>
+									@endif
                 				@endforeach
 								</ul>
 							</div>
 						</div><!--/brands_products-->
-						@endif
 					</div>
           			<br>
 				</div>
@@ -156,6 +154,21 @@
 	@include('inc/cartModal')
 
 	@include('inc/footer')
+	<script type="text/javascript">
+		function toggleIcon(item){
+			var parent = $('#accordian');
+			var minusIcon = parent.find('.fa-minus');
+			if($(item).hasClass('fa-plus')){
+				if(minusIcon.length > 0){
+					minusIcon.removeClass('fa-minus').addClass('fa-plus');
+				}
+				$(item).removeClass('fa-plus').addClass('fa-minus');
+			}	else 	{
+				minusIcon.removeClass('fa-minus').addClass('fa-plus');
+				$(item).removeClass('fa-minus').addClass('fa-plus');
+			}
+		}
+	</script>
 
 </body>
 </html>

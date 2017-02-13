@@ -15,6 +15,7 @@
 	<link href="{{url('assets/css/colors.css')}}" rel="stylesheet" type="text/css">
 	<link href="{{url('css/styles.css')}}" rel="stylesheet" type="text/css">
 	<!-- /global stylesheets -->
+	@yield('styles')
 
 	<!-- Core JS files -->
 	<script type="text/javascript" src="{{url('assets/js/plugins/loaders/pace.min.js')}}"></script>
@@ -35,12 +36,15 @@
 	<!-- /theme JS files -->
 
 	<script type="text/javascript">
-		var baseUrl = "{{url('')}}";
-	</script>
+      var app = angular.module('admin',[]);
+      var baseUrl = 'http://localhost/eshopper/public/';
+  	</script>
+
+  	@yield('headScripts')
 
 </head>
 
-<body>
+<body ng-app="admin" ng-cloak>
 
 	@include('admin/inc/navbar')
 
@@ -65,7 +69,11 @@
 
 					<div class="breadcrumb-line">
 						<ul class="breadcrumb">
-							<li><a href="{{url('')}}"><i class="icon-home2 position-left"></i> Home </a>/ <a href="{{url('es/admin')}}">dashboard</a> @yield('pagename')</li>
+							<li><a href="{{url('/')}}"><i class="icon-home2 position-left"></i> Home </a></li>
+							<li>
+								<a href="{{url('es/admin/dashboard')}}">dashboard</a>
+							</li>
+							<span class="active" style="margin-left: 6px;">@yield('pagename')</span>
 						</ul>
 						<a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a></div>
 

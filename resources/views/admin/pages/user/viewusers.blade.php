@@ -30,7 +30,6 @@
         <td>{{$user->group->group_name}}</td>
         <td id="user{{$user->id}}Status">{{$user->status==1 ? 'Activated':'Deactivated'}}</td>
         <td id="actions{{$user->id}}">
-          @if(!$user->trashed())
             <a href="{{url('es/admin/user/'.$user->id.'/edit')}}" title="Edit User">
               <button type="button" class="btn btn-info">
                 <span class="glyphicon glyphicon-edit"></span>
@@ -49,25 +48,11 @@
               </button>
             </a>
             @endif
-          @endif
-          @if($user->trashed())
-          <a href="#" onclick="restoreUser({{$user->id}})" title="Restore User">
-            <button type="button" class="btn btn-info">
-              <i class="icon-spinner11"></i>
-            </button>
-          </a>
-          <a href="{{url('es/admin/user/'.$user->id.'/forceDelete')}}" title="Delete User Permanently">
-            <button type="button" class="btn btn-danger">
-              <span class="glyphicon glyphicon-trash"></span>
-            </button>
-          </a>
-          @else
            <a href="#" id="deleteUser" onclick="deleteUser({{$user->id}})" onclick="return confirm('Do you really want to delete this user ?')"   title="Delete User">
             <button type="button" class="btn btn-danger">
               <span class="glyphicon glyphicon-trash"></span>
             </button>
           </a>
-          @endif
         </td>
       </tr>
       @endforeach
@@ -121,22 +106,6 @@
   function deleteUser(id){
     $.ajax({
       url:"http://localhost/eshopper/public/es/admin/user/"+id+"/delete",
-      method:"GET",
-      success:function(data){
-        var $this = $('#actions'+id);
-        var output = '<a href="#" ';
-        output +=  'onclick="restoreUser('+id+')" ';
-        output += 'title="Restore User"><button type="button" class="btn btn-info"><i class="icon-spinner11"></i></button></a>';
-        output += '<a href="'+baseUrl+'/es/admin/user/'+id+'/forceDelete" ';
-        output += 'title="Delete User Permanently"><button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button></a>';
-        $this.html(output);
-      }
-    });
-  }
-
-  function restoreUser(id){
-    $.ajax({
-      url:"http://localhost/eshopper/public/es/admin/user/"+id+"/restore",
       method:"GET",
       success:function(data){
         window.location.href = '';
